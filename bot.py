@@ -3,7 +3,7 @@ import asyncio
 from aiogram import Bot, Dispatcher
 
 from misc.config import BotConfig
-import handlers
+import scripts.handlers as handlers
 
 
 async def main() -> None:
