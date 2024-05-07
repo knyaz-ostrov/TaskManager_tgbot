@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 from misc.config import PostgresData as pd
 
@@ -17,6 +18,7 @@ class DBShell:
             host     = pd.get_db_host(),
             port     = pd.get_db_port()
         )
+        connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
         cursor = connect.cursor()
         return connect, cursor
     
