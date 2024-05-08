@@ -49,8 +49,7 @@ class DBCreator:
 
     def __init__(self) -> None:
         connection = self.__connection()
-        self.connect = connection[0]
-        self.cursor = connection[1]
+        self.connect, self.cursor = connection[0], connection[1]
         self.__drop_db()
         self.__create_db()
         self.__create_table()
