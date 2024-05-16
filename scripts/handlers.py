@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 
 from misc.data import *
-from scripts.db_shell import DBShell as db
+from scripts.db_shell import DBMethods as db
 
 
 router = Router()

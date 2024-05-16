@@ -3,14 +3,36 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 from misc.config import PostgresData as pd
 
-class DBShell:
-    def __init__(self, username: str, user_id: int) -> None:
-        self.username = username
-        self.user_id = user_id
+class PSQLConnect:
+    def __init__(self) -> None:
+        connectection = self.__connection()
+        self.connect, self.cursor = connectection[0], connectection[1]
+
+    def __connection(self) -> tuple:
+        connect = psycopg2.connect(
+            user     = pd.get_db_user(),
+            password = pd.get_db_password(),
+            host     = pd.get_db_host(),
+            port     = pd.get_db_port()
+        )
+        connect.autocommit = True
+        connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+        cursor = connect.cursor()
+
+        return connect, cursor
+    
+    def __del__(self) -> None:
+        self.cursor.close()
+        self.connect.close()
+
+
+
+class DBConnect(PSQLConnect):
+    def __init__(self) -> None:
         connection = self.__connection()
         self.connect, self.cursor = connection[0], connection[1]
-    
-    def __connection(self):
+
+    def __connection(self) -> tuple:
         connect = psycopg2.connect(
             database = pd.get_db_name(),
             user     = pd.get_db_user(),
@@ -23,49 +45,15 @@ class DBShell:
         cursor = connect.cursor()
 
         return connect, cursor
-    
-    def add_task(self, task: str):
-        self.cursor.execute(
-            f"INSERT INTO tasks (username, user_id, task) VALUES ('{self.username}', {self.user_id}, '{task}')"
-        )
-
-    def get_tasks(self):
-        self.cursor.execute(f'SELECT task FROM tasks WHERE user_id = {self.user_id}')
-        rows = self.cursor.fetchall()
-        tasks = [row[0] for row in rows]
-
-        return tasks
-
-    def clear_tasks(self):
-        self.cursor.execute(f'DELETE FROM tasks WHERE user_id = {self.user_id}')
-
-    def __del__(self) -> None:
-        self.cursor.close()
-        self.connect.close()
 
 
 
-class DBCreator:
-
+class DBRecreator(PSQLConnect):
     def __init__(self) -> None:
-        connection = self.__connection()
-        self.connect, self.cursor = connection[0], connection[1]
+        super().__init__()
         self.__drop_db()
         self.__create_db()
         self.__create_table()
-
-    def __connection(self):
-        connection = psycopg2.connect(
-            user     = pd.get_db_user(),
-            password = pd.get_db_password(),
-            host     = pd.get_db_host(),
-            port     = pd.get_db_port()
-        )
-        connection.autocommit = True
-        connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-        cursor = connection.cursor()
-
-        return connection, cursor
 
     def __drop_db(self) -> None:
         request = f'DROP DATABASE IF EXISTS "{pd.get_db_name()}"'
@@ -87,14 +75,14 @@ class DBCreator:
         self.cursor.execute(request)
 
     def __create_table(self) -> None:
-        connect = psycopg2.connect(
+        with psycopg2.connect(
             database = pd.get_db_name(),
             user     = pd.get_db_user(),
             password = pd.get_db_password(),
             host     = pd.get_db_host(),
             port     = pd.get_db_port()
-        )
-        request = (
+        ) as connect:
+            request = (
             'CREATE TABLE IF NOT EXISTS public.tasks        \n'
             '(                                              \n'
             '   username text COLLATE pg_catalog."default", \n'
@@ -106,13 +94,32 @@ class DBCreator:
 
             'ALTER TABLE IF EXISTS public.tasks             \n'
             '   OWNER to postgres;'
-        )
-        cursor = connect.cursor()
-        cursor.execute(request)
-        connect.commit()
-        cursor.close()
-        connect.close()
+            )
 
-    def __del__(self) -> None:
-        self.cursor.close()
-        self.connect.close()
+            with connect.cursor() as cursor:
+                cursor.execute(request)
+
+            connect.commit()
+
+
+
+class DBMethods(DBConnect):
+    def __init__(self, username: str, user_id: int) -> None:
+        super().__init__()
+        self.username, self.user_id = username, user_id
+
+    def add_task(self, task: str) -> None:
+        request = f"INSERT INTO tasks (username, user_id, task) VALUES ('{self.username}', {self.user_id}, '{task}')"
+        self.cursor.execute(request)
+
+    def get_tasks(self) -> list:
+        request = f'SELECT task FROM tasks WHERE user_id = {self.user_id}'
+        self.cursor.execute(request)
+        rows = self.cursor.fetchall()
+        tasks = [row[0] for row in rows]
+        
+        return tasks
+    
+    def clear_tasks(self) -> None:
+        request = f'DELETE FROM tasks WHERE user_id = {self.user_id}'
+        self.cursor.execute(request)
