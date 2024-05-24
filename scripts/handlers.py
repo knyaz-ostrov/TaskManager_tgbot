@@ -15,7 +15,8 @@ class InputWaiting(StatesGroup):
 
 
 @router.message(CommandStart())
-async def start_cmd(message: Message) -> None:
+async def start_cmd(message: Message, state: FSMContext) -> None:
+    await state.clear()
     await message.answer(BotMessageText.START_MESSAGE)
 
 
@@ -26,7 +27,8 @@ async def add_cmd(message: Message, state: FSMContext) -> None:
 
 
 @router.message(Command(BotCommands.GET_TASKS))
-async def get_tasks_cmd(message: Message) -> None:
+async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
+    await state.clear()
 
     tasks = db(message.from_user.username, message.from_user.id).get_tasks()
 
@@ -41,8 +43,9 @@ async def get_tasks_cmd(message: Message) -> None:
 
 
 @router.message(Command(BotCommands.CLEAR_TASKS))
-async def clear_tasks_cmd(message: Message) -> None:
-    
+async def clear_tasks_cmd(message: Message, state: FSMContext) -> None:
+    await state.clear()
+
     db(message.from_user.username, message.from_user.id).clear_tasks()
     
     await message.answer(BotMessageText.CLEAR_TASKS)
