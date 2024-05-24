@@ -1,19 +1,20 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from misc.config import PostgresData as pd
+from scripts.get_config import GetDBConfig
 
 class PSQLConnect:
     def __init__(self) -> None:
+        self.db_configs = GetDBConfig()
         connectection = self.__connection()
         self.connect, self.cursor = connectection[0], connectection[1]
 
     def __connection(self) -> tuple:
         connect = psycopg2.connect(
-            user     = pd.get_db_user(),
-            password = pd.get_db_password(),
-            host     = pd.get_db_host(),
-            port     = pd.get_db_port()
+            user     = self.db_configs.get_user(),
+            password = self.db_configs.get_password(),
+            host     = self.db_configs.get_host(),
+            port     = self.db_configs.get_port()
         )
         connect.autocommit = True
         connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
@@ -29,16 +30,17 @@ class PSQLConnect:
 
 class DBConnect(PSQLConnect):
     def __init__(self) -> None:
+        self.db_configs = GetDBConfig()
         connection = self.__connection()
         self.connect, self.cursor = connection[0], connection[1]
 
     def __connection(self) -> tuple:
         connect = psycopg2.connect(
-            database = pd.get_db_name(),
-            user     = pd.get_db_user(),
-            password = pd.get_db_password(),
-            host     = pd.get_db_host(),
-            port     = pd.get_db_port()
+            database = self.db_configs.get_database(),
+            user     = self.db_configs.get_user(),
+            password = self.db_configs.get_password(),
+            host     = self.db_configs.get_host(),
+            port     = self.db_configs.get_port()
         )
         connect.autocommit = True
         connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
@@ -56,14 +58,14 @@ class DBRecreator(PSQLConnect):
         self.__create_table()
 
     def __drop_db(self) -> None:
-        request = f'DROP DATABASE IF EXISTS "{pd.get_db_name()}"'
+        request = f'DROP DATABASE IF EXISTS "{self.db_configs.get_db_name()}"'
         self.cursor.execute(request)
 
     def __create_db(self) -> None:
         request = (
-            f'CREATE DATABASE "{pd.get_db_name()}"  \n'
+            f'CREATE DATABASE "{self.db_configs.get_db_name()}"  \n'
             '   WITH                                \n'
-            f'  OWNER = {pd.get_db_user()}          \n'
+            f'  OWNER = {self.db_configs.get_db_user()}          \n'
             '   ENCODING = \'UTF8\'                 \n'
             '   LC_COLLATE = \'Russian_Russia.1251\'\n'
             '   LC_CTYPE = \'Russian_Russia.1251\'  \n'
@@ -76,11 +78,11 @@ class DBRecreator(PSQLConnect):
 
     def __create_table(self) -> None:
         with psycopg2.connect(
-            database = pd.get_db_name(),
-            user     = pd.get_db_user(),
-            password = pd.get_db_password(),
-            host     = pd.get_db_host(),
-            port     = pd.get_db_port()
+            database = self.db_configs.get_database(),
+            user     = self.db_configs.get_user(),
+            password = self.db_configs.get_password(),
+            host     = self.db_configs.get_host(),
+            port     = self.db_configs.get_port()
         ) as connect:
             request = (
             'CREATE TABLE IF NOT EXISTS public.tasks        \n'

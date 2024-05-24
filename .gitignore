@@ -3,3 +3,4 @@
 misc/__pycache__
 scripts/__pycache__
 test.py
+misc/config.json

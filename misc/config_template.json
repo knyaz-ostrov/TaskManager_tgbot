@@ -1,0 +1,13 @@
+{
+    "bot": {
+        "token":     ""
+    },
+
+    "database": {
+        "database":  "",
+        "user":      "",
+        "password":  "",
+        "host":      "",
+        "port":      ""
+    }
+}
