@@ -1,0 +1,5 @@
+{
+    "add_task": "add",
+    "get_tasks": "tsk",
+    "clear_tasks": "clr"
+}

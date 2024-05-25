@@ -1,7 +1,7 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from scripts.get_config import GetDBConfig
+from scripts.config import GetDBConfig
 
 class PSQLConnect:
     def __init__(self) -> None:

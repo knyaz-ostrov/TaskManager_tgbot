@@ -4,7 +4,7 @@ import json
 class GetConfig:
     def __init__(self) -> None:
         configs = None
-        with open("misc/config.json", 'r') as file:
+        with open("configs/config.json", 'r') as file:
             configs = json.load(file)
         self.configs = configs
 
