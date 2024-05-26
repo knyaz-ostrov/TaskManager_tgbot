@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <BotMessageText>
+        <text id="start">Привет! Это простой менеджер задач.
+    Команды:
+        /add - Создать новую задачу
+        /tsk - Вывести текущий список задач
+        /clr - Очистить свой список задач</text>
+        <text id="add_task">Напиши название новой задачи</text>
+        <text id="task_list_empty">Список задач пуст.</text>
+        <text id="clear_tasks">Список задач очищен.</text>
+        <text id="task_created">Задача создана!</text>
+    </BotMessageText>
+    <BotCommands>
+        <command id="add_task">add</command>
+        <command id="get_tasks">tsk</command>
+        <command id="clear_tasks">clr</command>
+    </BotCommands>
+</root>
