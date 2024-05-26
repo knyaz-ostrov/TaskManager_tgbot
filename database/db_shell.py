@@ -60,14 +60,14 @@ class DBRecreator(PSQLConnect):
         self.__create_table()
 
     def __drop_db(self) -> None:
-        request = f'DROP DATABASE IF EXISTS "{self.db_configs.get_db_name()}"'
+        request = f'DROP DATABASE IF EXISTS "{self.db_configs.get_database()}"'
         self.cursor.execute(request)
 
     def __create_db(self) -> None:
         request = (
-            f'CREATE DATABASE "{self.db_configs.get_db_name()}"  \n'
+            f'CREATE DATABASE "{self.db_configs.get_database()}"  \n'
             '   WITH                                \n'
-            f'  OWNER = {self.db_configs.get_db_user()}          \n'
+            f'  OWNER = {self.db_configs.get_user()}          \n'
             '   ENCODING = \'UTF8\'                 \n'
             '   LC_COLLATE = \'Russian_Russia.1251\'\n'
             '   LC_CTYPE = \'Russian_Russia.1251\'  \n'
