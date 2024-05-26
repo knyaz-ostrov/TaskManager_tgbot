@@ -8,3 +8,7 @@ class GetJSON:
         with open(path, 'r') as file:
             data = json.load(file)
         self.data = data
+
+    def get_category(self, category) -> dict:
+        data = self.data[category]
+        return data

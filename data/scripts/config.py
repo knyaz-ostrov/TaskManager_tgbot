@@ -6,17 +6,14 @@ class GetConfig(GetJSON):
     def __init__(self) -> None:
         path = 'data/data/config.json'
         super().__init__(path)
-        del path
-        self.configs = self.data
-        del self.data
 
 
 
 class GetBotConfig(GetConfig):
     def __init__(self) -> None:
         super().__init__()
-        self.bot_configs = self.configs['bot']
-        del self.configs
+        category = 'bot'
+        self.bot_configs = self.get_category(category)
 
     def get_token(self) -> str:
         token = self.bot_configs['token']
@@ -27,8 +24,8 @@ class GetBotConfig(GetConfig):
 class GetDBConfig(GetConfig):
     def __init__(self) -> None:
         super().__init__()
-        self.db_configs = self.configs['database']
-        del self.configs
+        category = 'database'
+        self.db_configs = self.get_category(category)
 
     def get_database(self) -> str:
         database = self.db_configs['database']
