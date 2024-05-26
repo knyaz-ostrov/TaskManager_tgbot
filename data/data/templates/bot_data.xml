@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <BotMessageText>
+        <text id="start">start</text>
+    </BotMessageText>
+    <BotCommands>
+        <command id="command">command</command>
+    </BotCommands>
+</root>

@@ -1,7 +1,11 @@
 /venv
 /__pycache__
 handlers/__pycache__
-scripts/__pycache__
-configs/config.json
 test.py
 Main/__pycache__
+data/__pycache__
+data/data/bot_data.xml
+data/data/config.json
+data/scripts/__pycache__
+data/scripts/get_data/__pycache__
+database/__pycache__

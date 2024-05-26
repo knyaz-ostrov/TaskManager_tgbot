@@ -1,7 +1,9 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from scripts.config import GetDBConfig
+from data.scripts.config import GetDBConfig
+
+
 
 class PSQLConnect:
     def __init__(self) -> None:
@@ -121,7 +123,7 @@ class DBMethods(DBConnect):
         tasks = [row[0] for row in rows]
         
         return tasks
-    
+
     def clear_tasks(self) -> None:
         request = f'DELETE FROM tasks WHERE user_id = {self.user_id}'
         self.cursor.execute(request)
