@@ -26,14 +26,14 @@ async def start_cmd(message: Message, state: FSMContext) -> None:
 
 
 
-@router.message(Command(GetBotCommands().get_add_task_cmd()))
+@router.message(Command(GetBotCommands().get_add_task_command()))
 async def add_cmd(message: Message, state: FSMContext) -> None:
     await message.answer(GetBotMessageText().get_add_task_message())
     await state.set_state(InputWaiting.input_waiting)
 
 
 
-@router.message(Command(GetBotCommands().get_get_tasks_cmd()))
+@router.message(Command(GetBotCommands().get_get_tasks_command()))
 async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
     await state.clear()
 
@@ -50,7 +50,7 @@ async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
 
 
 
-@router.message(Command(GetBotCommands().get_clear_task_cmd()))
+@router.message(Command(GetBotCommands().get_clear_tasks_command()))
 async def clear_tasks_cmd(message: Message, state: FSMContext) -> None:
     await state.clear()
 

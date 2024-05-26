@@ -4,7 +4,7 @@ from .get_data.xml import GetXML
 
 class GetBotData(GetXML):
     def __init__(self) -> None:
-        path = '../data/bot_data.xml'
+        path = 'data/data/bot_data.xml'
         super().__init__(path)
         del path
         self.bot_data = self.data
