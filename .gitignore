@@ -6,5 +6,5 @@ Main/__pycache__
 data/__pycache__
 data/data/config.json
 data/scripts/__pycache__
-data/scripts/get_data/__pycache__
+data/scripts/data_types/__pycache__
 database/__pycache__
