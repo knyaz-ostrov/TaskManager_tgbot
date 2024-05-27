@@ -1,54 +1,52 @@
-from .get_data.json import GetJSON
+from .data_types.json import JSON
 
 
 
-class GetConfig(GetJSON):
+class Config(JSON):
     def __init__(self) -> None:
-        path = 'data/data/config.json'
-        super().__init__(path)
+        file_path = 'data/data/config.json'
+        super().__init__(file_path)
 
 
 
-class GetBotConfig(GetConfig):
+class BotConfig(Config):
     def __init__(self) -> None:
         super().__init__()
-        category = 'bot'
-        self.bot_configs = self.get_category(category)
+        self.category = 'bot'
 
     def get_token(self) -> str:
-        item = 'token'
-        value = self.bot_configs[item]
-        return value
+        item_key = 'token'
+        item = self.get_item(self.category, item_key)
+        return item
 
 
 
-class GetDBConfig(GetConfig):
+class PSQLConfig(Config):
     def __init__(self) -> None:
         super().__init__()
-        category = 'database'
-        self.db_configs = self.get_category(category)
+        self.category = 'postgresql'
 
     def get_database(self) -> str:
-        item = 'database'
-        value = self.db_configs[item]
-        return value
+        item_key = 'database'
+        item = self.get_item(self.category, item_key)
+        return item
 
     def get_user(self) -> str:
-        item = 'user'
-        value = self.db_configs[item]
-        return value
+        item_key = 'user'
+        item = self.get_item(self.category, item_key)
+        return item
 
     def get_password(self) -> str:
-        item = 'password'
-        value = self.db_configs[item]
-        return value
+        item_key = 'password'
+        item = self.get_item(self.category, item_key)
+        return item
 
     def get_host(self) -> str:
-        item = 'host'
-        value = self.db_configs[item]
-        return value
+        item_key = 'host'
+        item = self.get_item(self.category, item_key)
+        return item
 
     def get_port(self) -> str:
-        item = 'port'
-        value = self.db_configs[item]
-        return value
+        item_key = 'port'
+        item = self.get_item(self.category, item_key)
+        return item

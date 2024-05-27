@@ -1,73 +1,62 @@
-from .get_data.xml import GetXML
+from .data_types.xml import XML
 
 
 
-class GetBotData(GetXML):
+class BotData(XML):
     def __init__(self) -> None:
         file_path = 'data/data/bot_data.xml'
         super().__init__(file_path)
-        self.item_pattern = './/{}[@id="{}"]'
 
 
 
-class GetBotMessageText(GetBotData):
+class BotMessageText(BotData):
     def __init__(self) -> None:
         super().__init__()
-        item_type = 'text'
-        self.item_pattern = self.item_pattern.format(item_type, '{}')
+        self.category = 'text'
 
-    def get_start_message(self) -> str:
-        item = 'start'
-        item_path = self.item_pattern.format(item)
-        text = self.get_item(item_path)
+    def get_start(self) -> str:
+        filter_value = 'start'
+        text = self.get_item(self.category, filter_value)
         return text
 
-    def get_add_task_message(self) -> str:
-        item = 'add_task'
-        item_path = self.item_pattern.format(item)
-        text = self.get_item(item_path)
+    def get_add_task(self) -> str:
+        filter_value = 'add_task'
+        text = self.get_item(self.category, filter_value)
         return text
 
-    def get_task_list_empty_message(self) -> str:
-        item = 'task_list_empty'
-        item_path = self.item_pattern.format(item)
-        text = self.get_item(item_path)
+    def get_task_list_empty(self) -> str:
+        filter_value = 'task_list_empty'
+        text = self.get_item(self.category, filter_value)
         return text
 
-    def get_clear_tasks_message(self) -> str:
-        item = 'clear_tasks'
-        item_path = self.item_pattern.format(item)
-        text = self.get_item(item_path)
+    def get_clear_tasks(self) -> str:
+        filter_value = 'clear_tasks'
+        text = self.get_item(self.category, filter_value)
         return text
 
-    def get_task_created_message(self) -> str:
-        item = 'task_created'
-        item_path = self.item_pattern.format(item)
-        text = self.get_item(item_path)
+    def get_task_created(self) -> str:
+        filter_value = 'task_created'
+        text = self.get_item(self.category, filter_value)
         return text
 
 
 
-class GetBotCommands(GetBotData):
+class BotCommands(BotData):
     def __init__(self) -> None:
         super().__init__()
-        item_type = 'command'
-        self.item_pattern = self.item_pattern.format(item_type, '{}')
+        self.category = 'command'
 
-    def get_add_task_command(self) -> str:
-        item = 'add_task'
-        item_path = self.item_pattern.format(item)
-        command = self.get_item(item_path)
-        return command
+    def get_add_task(self) -> str:
+        filter_value = 'add_task'
+        text = self.get_item(self.category, filter_value)
+        return text
 
-    def get_get_tasks_command(self) -> str:
-        item = 'get_tasks'
-        item_path = self.item_pattern.format(item)
-        command = self.get_item(item_path)
-        return command
+    def get_get_tasks(self) -> str:
+        filter_value = 'get_tasks'
+        text = self.get_item(self.category, filter_value)
+        return text
 
-    def get_clear_tasks_command(self) -> str:
-        item = 'clear_tasks'
-        item_path = self.item_pattern.format(item)
-        command = self.get_item(item_path)
-        return command
+    def get_clear_tasks(self) -> str:
+        filter_value = 'clear_tasks'
+        text = self.get_item(self.category, filter_value)
+        return text

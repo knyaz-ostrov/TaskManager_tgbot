@@ -3,7 +3,7 @@
         "token":     ""
     },
 
-    "database": {
+    "postgresql": {
         "database":  "",
         "user":      "",
         "password":  "",

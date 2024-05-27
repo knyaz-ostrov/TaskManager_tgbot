@@ -1,13 +1,13 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from data.scripts.config import GetDBConfig
+from data.scripts.config import PSQLConfig
 
 
 
 class PSQLConnect:
     def __init__(self) -> None:
-        self.db_configs = GetDBConfig()
+        self.db_configs = PSQLConfig()
         connectection = self.__connection()
         self.connect, self.cursor = connectection[0], connectection[1]
 
@@ -32,7 +32,7 @@ class PSQLConnect:
 
 class DBConnect(PSQLConnect):
     def __init__(self) -> None:
-        self.db_configs = GetDBConfig()
+        self.db_configs = PSQLConfig()
         connection = self.__connection()
         self.connect, self.cursor = connection[0], connection[1]
 
