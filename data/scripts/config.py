@@ -16,8 +16,9 @@ class GetBotConfig(GetConfig):
         self.bot_configs = self.get_category(category)
 
     def get_token(self) -> str:
-        token = self.bot_configs['token']
-        return token
+        item = 'token'
+        value = self.bot_configs[item]
+        return value
 
 
 
@@ -28,21 +29,26 @@ class GetDBConfig(GetConfig):
         self.db_configs = self.get_category(category)
 
     def get_database(self) -> str:
-        database = self.db_configs['database']
-        return database
+        item = 'database'
+        value = self.db_configs[item]
+        return value
 
     def get_user(self) -> str:
-        user = self.db_configs['user']
-        return user
+        item = 'user'
+        value = self.db_configs[item]
+        return value
 
     def get_password(self) -> str:
-        password = self.db_configs['password']
-        return password
+        item = 'password'
+        value = self.db_configs[item]
+        return value
 
     def get_host(self) -> str:
-        host = self.db_configs['host']
-        return host
+        item = 'host'
+        value = self.db_configs[item]
+        return value
 
     def get_port(self) -> str:
-        port = self.db_configs['port']
-        return port
+        item = 'port'
+        value = self.db_configs[item]
+        return value

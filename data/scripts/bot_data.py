@@ -4,39 +4,46 @@ from .get_data.xml import GetXML
 
 class GetBotData(GetXML):
     def __init__(self) -> None:
-        path = 'data/data/bot_data.xml'
-        super().__init__(path)
-        del path
-        self.bot_data = self.data
-        del self.data
+        file_path = 'data/data/bot_data.xml'
+        super().__init__(file_path)
+        self.item_pattern = './/{}[@id="{}"]'
 
 
 
 class GetBotMessageText(GetBotData):
     def __init__(self) -> None:
         super().__init__()
-        self.bot_message_text = self.bot_data
-        del self.bot_data
-        self.path = './/BotMessageText/text[@id="{}"]'
+        item_type = 'text'
+        self.item_pattern = self.item_pattern.format(item_type, '{}')
 
     def get_start_message(self) -> str:
-        text = self.bot_message_text.xpath(self.path.format('start'))[0].text
+        item = 'start'
+        item_path = self.item_pattern.format(item)
+        text = self.get_item(item_path)
         return text
 
     def get_add_task_message(self) -> str:
-        text = self.bot_message_text.xpath(self.path.format('add_task'))[0].text
+        item = 'add_task'
+        item_path = self.item_pattern.format(item)
+        text = self.get_item(item_path)
         return text
 
     def get_task_list_empty_message(self) -> str:
-        text = self.bot_message_text.xpath(self.path.format('task_list_empty'))[0].text
+        item = 'task_list_empty'
+        item_path = self.item_pattern.format(item)
+        text = self.get_item(item_path)
         return text
 
     def get_clear_tasks_message(self) -> str:
-        text = self.bot_message_text.xpath(self.path.format('clear_tasks'))[0].text
+        item = 'clear_tasks'
+        item_path = self.item_pattern.format(item)
+        text = self.get_item(item_path)
         return text
 
     def get_task_created_message(self) -> str:
-        text = self.bot_message_text.xpath(self.path.format('task_created'))[0].text
+        item = 'task_created'
+        item_path = self.item_pattern.format(item)
+        text = self.get_item(item_path)
         return text
 
 
@@ -44,18 +51,23 @@ class GetBotMessageText(GetBotData):
 class GetBotCommands(GetBotData):
     def __init__(self) -> None:
         super().__init__()
-        self.bot_commands = self.bot_data
-        del self.bot_data
-        self.path = './/BotCommands/command[@id="{}"]'
+        item_type = 'command'
+        self.item_pattern = self.item_pattern.format(item_type, '{}')
 
     def get_add_task_command(self) -> str:
-        command = self.bot_commands.xpath(self.path.format('add_task'))[0].text
+        item = 'add_task'
+        item_path = self.item_pattern.format(item)
+        command = self.get_item(item_path)
         return command
 
     def get_get_tasks_command(self) -> str:
-        command = self.bot_commands.xpath(self.path.format('get_tasks'))[0].text
+        item = 'get_tasks'
+        item_path = self.item_pattern.format(item)
+        command = self.get_item(item_path)
         return command
 
     def get_clear_tasks_command(self) -> str:
-        command = self.bot_commands.xpath(self.path.format('clear_tasks'))[0].text
+        item = 'clear_tasks'
+        item_path = self.item_pattern.format(item)
+        command = self.get_item(item_path)
         return command
