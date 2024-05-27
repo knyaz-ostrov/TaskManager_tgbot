@@ -4,8 +4,7 @@ from aiogram.filters import CommandStart, Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 
-from data.scripts.bot_data import BotMessageText
-from data.scripts.bot_data import BotCommands
+from data.scripts.bot_data import BotMessageText, BotCommands
 from database.db_shell import DBMethods
 
 
