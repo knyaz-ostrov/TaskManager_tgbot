@@ -26,6 +26,20 @@ class PSQLConfig(Config):
         super().__init__()
         self.category = 'postgresql'
 
+    def get_psql_data(self) -> dict:
+        psql_data = {
+            'user': self.get_user(),
+            'password': self.get_password(),
+            'host': self.get_host(),
+            'port': self.get_port()
+        }
+        return psql_data
+
+    def get_db_data(self) -> dict:
+        db_data = self.get_psql_data()
+        db_data['database'] = self.get_database()
+        return db_data
+
     def get_database(self) -> str:
         item_key = 'database'
         item = self.get_item(self.category, item_key)

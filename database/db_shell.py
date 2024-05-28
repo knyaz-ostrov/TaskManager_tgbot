@@ -5,65 +5,24 @@ from data.scripts.config import PSQLConfig
 
 
 
-class PSQLConnect:
+class PSQL:
     def __init__(self) -> None:
         self.db_configs = PSQLConfig()
-        connectection = self.__connection()
-        self.connect, self.cursor = connectection[0], connectection[1]
+        data = self.db_configs.get_psql_data()
+        self.connection(data)
 
-    def __connection(self) -> tuple:
-        connect = psycopg2.connect(
-            user     = self.db_configs.get_user(),
-            password = self.db_configs.get_password(),
-            host     = self.db_configs.get_host(),
-            port     = self.db_configs.get_port()
-        )
+    def connection(self, data) -> None:
+        connect = psycopg2.connect(**data)
         connect.autocommit = True
         connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-        cursor = connect.cursor()
 
-        return connect, cursor
-    
-    def __del__(self) -> None:
-        self.cursor.close()
-        self.connect.close()
+        self.connect, self.cursor = connect, connect.cursor()
 
-
-
-class DBConnect(PSQLConnect):
-    def __init__(self) -> None:
-        self.db_configs = PSQLConfig()
-        connection = self.__connection()
-        self.connect, self.cursor = connection[0], connection[1]
-
-    def __connection(self) -> tuple:
-        connect = psycopg2.connect(
-            database = self.db_configs.get_database(),
-            user     = self.db_configs.get_user(),
-            password = self.db_configs.get_password(),
-            host     = self.db_configs.get_host(),
-            port     = self.db_configs.get_port()
-        )
-        connect.autocommit = True
-        connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-        cursor = connect.cursor()
-
-        return connect, cursor
-
-
-
-class DBRecreator(PSQLConnect):
-    def __init__(self) -> None:
-        super().__init__()
-        self.__drop_db()
-        self.__create_db()
-        self.__create_table()
-
-    def __drop_db(self) -> None:
+    def drop_db(self) -> None:
         request = f'DROP DATABASE IF EXISTS "{self.db_configs.get_database()}"'
         self.cursor.execute(request)
 
-    def __create_db(self) -> None:
+    def create_db(self) -> None:
         request = (
             f'CREATE DATABASE "{self.db_configs.get_database()}"  \n'
             '   WITH                                \n'
@@ -78,36 +37,37 @@ class DBRecreator(PSQLConnect):
         )
         self.cursor.execute(request)
 
-    def __create_table(self) -> None:
-        with psycopg2.connect(
-            database = self.db_configs.get_database(),
-            user     = self.db_configs.get_user(),
-            password = self.db_configs.get_password(),
-            host     = self.db_configs.get_host(),
-            port     = self.db_configs.get_port()
-        ) as connect:
-            request = (
-            'CREATE TABLE IF NOT EXISTS public.tasks        \n'
-            '(                                              \n'
-            '   username text COLLATE pg_catalog."default", \n'
-            '   user_id bigint,                             \n'
-            '   task text COLLATE pg_catalog."default"      \n'
-            ')                                              \n\n'
-
-            'TABLESPACE pg_default;                         \n\n'
-
-            'ALTER TABLE IF EXISTS public.tasks             \n'
-            '   OWNER to postgres;'
-            )
-
-            with connect.cursor() as cursor:
-                cursor.execute(request)
-
-            connect.commit()
+    def __del__(self) -> None:
+        self.cursor.close()
+        self.connect.close()
 
 
 
-class DBMethods(DBConnect):
+class Database(PSQL):
+    def __init__(self) -> None:
+        self.db_configs = PSQLConfig()
+        data = self.db_configs.get_db_data()
+        self.connection(data)
+
+    def create_table(self) -> None:
+        request = (
+        'CREATE TABLE IF NOT EXISTS public.tasks        \n'
+        '(                                              \n'
+        '   username text COLLATE pg_catalog."default", \n'
+        '   user_id bigint,                             \n'
+        '   task text COLLATE pg_catalog."default"      \n'
+        ')                                              \n\n'
+
+        'TABLESPACE pg_default;                         \n\n'
+
+        'ALTER TABLE IF EXISTS public.tasks             \n'
+        '   OWNER to postgres;'
+        )
+        self.cursor.execute(request)
+
+
+
+class DBMethods(Database):
     def __init__(self, username: str, user_id: int) -> None:
         super().__init__()
         self.username, self.user_id = username, user_id
