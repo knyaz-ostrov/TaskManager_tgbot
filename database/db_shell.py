@@ -8,7 +8,12 @@ from data.scripts.config import PSQLConfig
 class PSQL:
     def __init__(self) -> None:
         self.db_configs = PSQLConfig()
-        data = self.db_configs.get_psql_data()
+        data = {
+            'user': self.db_configs.user,
+            'password': self.db_configs.password,
+            'host': self.db_configs.host,
+            'port': self.db_configs.port
+        }
         self.connection(data)
 
     def connection(self, data) -> None:
@@ -19,14 +24,14 @@ class PSQL:
         self.connect, self.cursor = connect, connect.cursor()
 
     def drop_db(self) -> None:
-        request = f'DROP DATABASE IF EXISTS "{self.db_configs.get_database()}"'
+        request = f'DROP DATABASE IF EXISTS "{self.db_configs.database}"'
         self.cursor.execute(request)
 
     def create_db(self) -> None:
         request = (
-            f'CREATE DATABASE "{self.db_configs.get_database()}"  \n'
+            f'CREATE DATABASE "{self.db_configs.database}"  \n'
             '   WITH                                \n'
-            f'  OWNER = {self.db_configs.get_user()}          \n'
+            f'  OWNER = {self.db_configs.user}          \n'
             '   ENCODING = \'UTF8\'                 \n'
             '   LC_COLLATE = \'Russian_Russia.1251\'\n'
             '   LC_CTYPE = \'Russian_Russia.1251\'  \n'
@@ -46,7 +51,13 @@ class PSQL:
 class Database(PSQL):
     def __init__(self) -> None:
         self.db_configs = PSQLConfig()
-        data = self.db_configs.get_db_data()
+        data = {
+            'database': self.db_configs.database,
+            'user': self.db_configs.user,
+            'password': self.db_configs.password,
+            'host': self.db_configs.host,
+            'port': self.db_configs.port
+        }
         self.connection(data)
 
     def create_table(self) -> None:

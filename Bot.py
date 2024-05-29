@@ -8,7 +8,7 @@ from handlers import general
 
 
 async def main() -> None:
-    bot = Bot(BotConfig().get_token())
+    bot = Bot(BotConfig().token)
     dp = Dispatcher()
 
     dp.include_router(general.router)

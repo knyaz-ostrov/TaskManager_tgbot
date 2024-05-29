@@ -21,18 +21,18 @@ class InputWaiting(StatesGroup):
 @router.message(CommandStart())
 async def start_cmd(message: Message, state: FSMContext) -> None:
     await state.clear()
-    await message.answer(BotMessageText().get_start())
+    await message.answer(BotMessageText.start)
 
 
 
-@router.message(Command(BotCommands().get_add_task()))
+@router.message(Command(BotCommands.add_task))
 async def add_cmd(message: Message, state: FSMContext) -> None:
-    await message.answer(BotMessageText().get_add_task())
+    await message.answer(BotMessageText.add_task)
     await state.set_state(InputWaiting.input_waiting)
 
 
 
-@router.message(Command(BotCommands().get_get_tasks()))
+@router.message(Command(BotCommands.get_tasks))
 async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
     await state.clear()
 
@@ -43,19 +43,19 @@ async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
         mes += f'\n{i}. {task}'
 
     if len(mes) == 0:
-        mes = BotMessageText().get_task_list_empty()
+        mes = BotMessageText.task_list_empty
 
     await message.answer(mes)
 
 
 
-@router.message(Command(BotCommands().get_clear_tasks()))
+@router.message(Command(BotCommands.clear_tasks))
 async def clear_tasks_cmd(message: Message, state: FSMContext) -> None:
     await state.clear()
 
     DBMethods(message.from_user.username, message.from_user.id).clear_tasks()
-    
-    await message.answer(BotMessageText().get_clear_tasks())
+
+    await message.answer(BotMessageText.clear_tasks)
 
 
 
@@ -64,5 +64,5 @@ async def task_creation(message: Message, state: FSMContext) -> None:
 
     DBMethods(message.from_user.username, message.from_user.id).add_task(message.text)
 
-    await message.answer(BotMessageText().get_task_created())
+    await message.answer(BotMessageText.task_created)
     await state.clear()
