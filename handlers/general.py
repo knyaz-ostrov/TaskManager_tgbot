@@ -13,6 +13,8 @@ router = Router()
 
 
 
+# Состояние, при котором бот ожидает от пользователя текстовое
+# название нового task'а для занесения его в БД
 class InputWaiting(StatesGroup):
     input_waiting = State()
 
@@ -25,6 +27,7 @@ async def start_cmd(message: Message, state: FSMContext) -> None:
 
 
 
+# Команда добавить новый task
 @router.message(Command(BotCommands.add_task))
 async def add_cmd(message: Message, state: FSMContext) -> None:
     await message.answer(BotMessageText.add_task)
@@ -32,6 +35,7 @@ async def add_cmd(message: Message, state: FSMContext) -> None:
 
 
 
+# Команда получить список всех своих task'ов
 @router.message(Command(BotCommands.get_tasks))
 async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
     await state.clear()
@@ -49,6 +53,7 @@ async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
 
 
 
+# Команда полностью очистить список своих task'ов
 @router.message(Command(BotCommands.clear_tasks))
 async def clear_tasks_cmd(message: Message, state: FSMContext) -> None:
     await state.clear()
@@ -59,6 +64,7 @@ async def clear_tasks_cmd(message: Message, state: FSMContext) -> None:
 
 
 
+# Получение текстового сообщения с названием нового task'а
 @router.message(StateFilter(InputWaiting.input_waiting), F.text)
 async def task_creation(message: Message, state: FSMContext) -> None:
 
