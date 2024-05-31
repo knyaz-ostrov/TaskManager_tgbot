@@ -4,7 +4,7 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from data.scripts.config import PSQLConfig
 
 
-
+# Подключение к серверу PostgreSQL
 class PSQL:
     def __init__(self) -> None:
         self.db_configs = PSQLConfig()
@@ -47,7 +47,7 @@ class PSQL:
         self.connect.close()
 
 
-
+# Подключение к серверу и БД PostgreSQL
 class Database(PSQL):
     def __init__(self) -> None:
         self.db_configs = PSQLConfig()
@@ -77,7 +77,7 @@ class Database(PSQL):
         self.cursor.execute(request)
 
 
-
+# Кастомные методы для работы с данными в БД
 class DBActions(Database):
     def __init__(self, username: str, user_id: int) -> None:
         super().__init__()
