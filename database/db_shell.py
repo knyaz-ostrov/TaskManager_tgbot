@@ -78,7 +78,7 @@ class Database(PSQL):
 
 
 
-class DBMethods(Database):
+class DBActions(Database):
     def __init__(self, username: str, user_id: int) -> None:
         super().__init__()
         self.username, self.user_id = username, user_id
@@ -91,9 +91,7 @@ class DBMethods(Database):
         request = f'SELECT task FROM tasks WHERE user_id = {self.user_id}'
         self.cursor.execute(request)
         rows = self.cursor.fetchall()
-        tasks = [row[0] for row in rows]
-        
-        return tasks
+        return [row[0] for row in rows]
 
     def clear_tasks(self) -> None:
         request = f'DELETE FROM tasks WHERE user_id = {self.user_id}'
