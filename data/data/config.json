@@ -1,0 +1,13 @@
+{
+    "bot": {
+        "token":     ""
+    },
+
+    "postgresql": {
+        "database":  "",
+        "user":      "",
+        "password":  "",
+        "host":      "",
+        "port":      ""
+    }
+}
