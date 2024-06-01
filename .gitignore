@@ -5,5 +5,4 @@ test.py
 Main/__pycache__
 data/__pycache__
 data/scripts/__pycache__
-data/scripts/data_types/__pycache__
 database/__pycache__
