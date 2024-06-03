@@ -7,37 +7,35 @@ ___
 
     `git clone https://github.com/knyaz-ostrov/TaskManager_tgbot.git`
 
-2. Переход в директорию с конфигурационным файлом в TaskManager_tgbot
+2. Переход в директорию проекта TaskManager_tgbot
 
-    `cd TaskManager_tgbot/data/data`
+    `cd TaskManager_tgbot`
 
 3. Открыть config.json и внести все необходимые данные
 
+    > Путь: `data/data/`
+    > 
     > Рекомендую использовать редактор [Notepadd++](https://notepad-plus-plus.org/ "Официальный сайт")
-   
-6. Вернуться в корневую папу TaskManager_tgbot
 
-   `cd ../..`
-
-7. Создание виртуального окружения
+4. Создание виртуального окружения
 
     `py -m venv env`
 
-8. Активация виртуального окружения
+5. Активация виртуального окружения
 
     * cmd -> `call env/Scripts/activate`
    
     * PowerShell -> `env/Scripts/activate`
 
-9. Установка зависимостей
+6. Установка зависимостей
 
     `pip install -r requirements.txt`
 
-9. Запуск скрипта для создания базы данных
+7. Запуск скрипта для создания базы данных
 
     `py RecreateDB.py`
 
-10. Запуск бота
+8. Запуск бота
 
     `py Bot.py`
 ___
