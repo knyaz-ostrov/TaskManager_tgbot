@@ -1,4 +1,4 @@
-# Task Manager & Template Telegram Bot
+# Task Manager Telegram Bot
 Телеграм-бот для создания и хранения личного списка задач.
 ___
 > ## Установка (Windows)
