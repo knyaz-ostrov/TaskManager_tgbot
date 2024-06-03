@@ -15,7 +15,7 @@ ___
 
     Путь: `data/data/config.json`
      
-    > Рекомендую использовать редактор [Notepadd++](https://notepad-plus-plus.org/ "Официальный сайт")
+    > Рекомендую использовать редактор [Notepad++](https://notepad-plus-plus.org/ "Официальный сайт")
 
 4. Создание виртуального окружения
 
