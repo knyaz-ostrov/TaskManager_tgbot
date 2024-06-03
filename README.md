@@ -2,7 +2,7 @@
 Телеграм-бот для создания и хранения личного списка задач.
 #
 ## Установка (Windows)
-У вас должны быть установлены ЗАВИСИМОСТИ ПРОЕКТА
+У вас должны быть установлены [зависимости проекта](https://github.com/knyaz-ostrov/TaskManager_tgbot#Зависимости)
 1. Клонирование репозитория
 
     `git clone https://github.com/knyaz-ostrov/TaskManager_tgbot.git`
