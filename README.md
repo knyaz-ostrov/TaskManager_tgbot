@@ -1,3 +1,20 @@
+# Task Manager & Template Telegram Bot
+Телеграм-бот для создания и хранения личного списка задач.
+#
+## Установка (Windows)
+У вас должны быть установлены ЗАВИСИМОСТИ ПРОЕКТА
+1. Клонирование репозитория
+
+`git clone https://github.com/knyaz-ostrov/TaskManager_tgbot.git`
+3. Переход в директорию TaskManager_tgbot
+`cd TaskManager_tgbot`
+4. Создание виртуального окружения
+`py -m venv env`
+5. Активация виртуального окружения
+
+
+
+
 <h1 align="left">Телеграм-бот для ведения личного списка задач;
   <h1 align="center">Шаблон бота для будущих проектов;
     <h1 align="right">Демонстрация навыков.
