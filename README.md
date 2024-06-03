@@ -11,9 +11,9 @@ ___
 
     `cd TaskManager_tgbot`
 
-3. Открыть config.json и внести все необходимые данные
+3. Открыть файл конфигурации и внести все необходимые данные
 
-    > Путь: `data/data/`
+    > Путь: `data/data/config.json`
     > 
     > Рекомендую использовать редактор [Notepadd++](https://notepad-plus-plus.org/ "Официальный сайт")
 
