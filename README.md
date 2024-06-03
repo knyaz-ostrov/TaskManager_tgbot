@@ -23,9 +23,9 @@ ___
 
 8. Активация виртуального окружения
 
-    ● cmd -> `call env/Scripts/activate`
+    * cmd -> `call env/Scripts/activate`
    
-    ● PowerShell -> `env/Scripts/activate`
+    * PowerShell -> `env/Scripts/activate`
 
 9. Установка зависимостей
 
@@ -40,7 +40,7 @@ ___
     `py Bot.py`
 ___
 > ## Поддержка
-По любым вопросам, проблемам или предложениям создайте [обсуждение](https://github.com/knyaz-ostrov/TaskManager_tgbot/issues/new/choose) в данном репозитории или напишите мне в [Телеграм](https://t.me/knyaz_ostrov).
+По любым вопросам, проблемам или предложениям создайте [обсуждение](https://github.com/knyaz-ostrov/TaskManager_tgbot/issues/new/choose) в данном репозитории или напишите мне в [Телеграм](https://t.me/knyaz_ostrov "t.me/knyaz_ostrov").
 ___
 > ## Зависимости
 Эта программа зависит от интерпретатора Python версии 3.11.8 или выше, PIP 24.0 или выше, PostgreSQL 16 или выше. Если вы заметили, что данное ПО можно запустить на версии ниже, или оно не работает на какой-либо версии, то напишите в [поддержку](https://github.com/knyaz-ostrov/TaskManager_tgbot#Поддержка).
@@ -59,4 +59,4 @@ ___
 
     `/clr`
 #
-<h1 >
+<h3 align="right">[@knyaz_ostrov](https://t.me/knyaz_ostrov "t.me/knyaz_ostrov")
