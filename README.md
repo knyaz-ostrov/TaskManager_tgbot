@@ -35,4 +35,5 @@
   <h3 align="left">● Далее следует установить все зависимости из файла "requirements.txt"
   <h3 align="left">● Заполнить файл конфигурации актуальными параметрами
   <h3 align="left">● Установить и настроить PostgreSQL, если всё ещё не сделали это
+  <h3 align="left">● Развернуть базу данных: "py RecreateDB.py"
   <h3 align="left">● Run "py Bot.py"
