@@ -40,7 +40,7 @@ ___
     `py Bot.py`
 ___
 > ## Поддержка
-По любым вопросам, проблемам или предложениям создайте [обсуждение](https://github.com/knyaz-ostrov/TaskManager_tgbot/issues/new/choose) в данном репозитории или напишите мне в [Телеграм](https://t.me/knyaz_ostrov "t.me/knyaz_ostrov").
+По любым вопросам, проблемам или предложениям создайте [обсуждение](https://github.com/knyaz-ostrov/TaskManager_tgbot/issues/new/choose) в данном репозитории или напишите мне в [Телеграм](https://t.me/knyaz_ostrov "t.me/knyaz_ostrov") или на почту <knyaz.ostrov@gmail.com>.
 ___
 > ## Зависимости
 Эта программа зависит от интерпретатора Python версии 3.11.8 или выше, PIP 24.0 или выше, PostgreSQL 16 или выше. Если вы заметили, что данное ПО можно запустить на версии ниже, или оно не работает на какой-либо версии, то напишите в [поддержку](https://github.com/knyaz-ostrov/TaskManager_tgbot#Поддержка).
@@ -59,4 +59,6 @@ ___
 
     `/clr`
 ___
-<h3 align="right"><a href="https://t.me/knyaz_ostrov" title="t.me/knyaz_ostrov">@knyaz_ostrov</a>
+> ## Контакты для сотрудничества:
+* ### Telegram: [t.me/knyaz_ostrov](https://t.me/knyaz_ostrov "https://t.me/knyaz_ostrov")
+* ### Email: <knyaz.ostrov@gmail.com>
