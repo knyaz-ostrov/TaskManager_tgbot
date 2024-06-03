@@ -58,5 +58,5 @@ ___
 3. Удалить свои задачи
 
     `/clr`
-#
-<h3 align="right">[@knyaz_ostrov](https://t.me/knyaz_ostrov "t.me/knyaz_ostrov")
+___
+<h3 align="right"><a href="https://t.me/knyaz_ostrov" title="t.me/knyaz_ostrov">@knyaz_ostrov</a>
