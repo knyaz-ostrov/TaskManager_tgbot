@@ -11,3 +11,8 @@
   <h4 align="left">● aiogram
   <h4 align="left">● psycopg2
   <h4 align="left">● lxml
+<h2 align="left">Description:
+<h4 align="left">Простой телеграм-бот, имеющий на борту, помимо стартовой, три команды:
+  <h3 align="left">● /add - добавить задачу
+  <h3 align="left">● /tsk - показать список личных задач
+  <h3 align="left">● /clr - удалить все личные задачи
