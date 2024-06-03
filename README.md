@@ -5,13 +5,39 @@
 У вас должны быть установлены ЗАВИСИМОСТИ ПРОЕКТА
 1. Клонирование репозитория
 
-`git clone https://github.com/knyaz-ostrov/TaskManager_tgbot.git`
-3. Переход в директорию TaskManager_tgbot
-`cd TaskManager_tgbot`
-4. Создание виртуального окружения
-`py -m venv env`
-5. Активация виртуального окружения
+    `git clone https://github.com/knyaz-ostrov/TaskManager_tgbot.git`
 
+2. Переход в директорию TaskManager_tgbot
+
+    `cd TaskManager_tgbot`
+
+3. Создание виртуального окружения
+
+    `py -m venv env`
+
+4. Активация виртуального окружения
+
+    ● cmd -> `call env/Scripts/activate`
+   
+    ● PowerShell -> `env/Scripts/activate`
+
+5. Установка зависимостей
+
+    `pip install -r requirements.txt`
+
+6. Запуск скрипта для создания базы данных
+
+    `py RecreateDB.py`
+
+7. Запуск бота
+
+    `py Bot.py`
+#
+## Поддержка
+По любым вопросам, проблемам или предложениям создайте [обсуждение](https://github.com/knyaz-ostrov/TaskManager_tgbot/issues/new/choose) в данном репозитории или напишите мне в [Телеграм](https://t.me/knyaz_ostrov).
+#
+## Зависимости
+Эта программа зависит от интерпретатора Python версии 3.11.8 или выше, PIP 24.0 или выше. Если вы заметили, что данное ПО можно запустить на версии ниже, или оно не работает на какой-либо версии, то напишите [обсуждение](https://github.com/knyaz-ostrov/TaskManager_tgbot/issues/new/choose)
 
 
 
