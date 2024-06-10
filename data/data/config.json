@@ -4,10 +4,10 @@
     },
 
     "postgresql": {
-        "database":  "",
-        "user":      "",
-        "password":  "",
-        "host":      "",
-        "port":      ""
+        "database":  "Test Task",
+        "user":      "postgres",
+        "password":  "6699",
+        "host":      "localhost",
+        "port":      "5432"
     }
 }
