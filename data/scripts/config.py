@@ -1,21 +1,30 @@
+"""
+Модуль для извлечения конфигурационных файлов
+из json-файла.
+"""
 import json
-
 
 
 FILE_PATH = 'data/data/config.json'
 
 
-
 class BotConfig:
-    with open(FILE_PATH) as file:
+    """
+    Класс для хранения конфигурационных
+    данных бота.
+    """
+    with open(FILE_PATH, encoding='UTF-8') as file:
         __bot_config = json.load(file)['bot']
 
     token = __bot_config['token']
 
 
-
 class PSQLConfig:
-    with open(FILE_PATH) as file:
+    """
+    Класс для хранения конфигурационных данных
+    PostgreSQL.
+    """
+    with open(FILE_PATH, encoding='UTF-8') as file:
         __psql_config = json.load(file)['postgresql']
 
     database = __psql_config['database']
