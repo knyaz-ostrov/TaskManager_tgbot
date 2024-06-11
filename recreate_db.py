@@ -1,12 +1,22 @@
+"""
+Модуль для выполнения пересоздания БД PostgreSQL.
+"""
 from database.db_shell import PSQL, Database
+from constants import CONFIRMATION_OF_DATABASE_RECREATION
 
 
 
 def main() -> None:
-    confirm = input('Вы действительно хотите выполнить пересоздание БД? [Y/N]: ').lower()
+    """
+    Запрашивает подтверждение о выполнении процесса пересоздания БД, удаляет БД, создаёт БД и
+    таблицы.
+    
+    :return:
+    """
+    confirm = input(CONFIRMATION_OF_DATABASE_RECREATION).lower()
     if confirm != 'y':
         return
-    
+
     psql = PSQL()
     psql.drop_db()
     psql.create_db()
