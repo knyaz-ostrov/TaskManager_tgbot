@@ -11,7 +11,7 @@ from handlers import general
 from data.scripts.config import BotConfig
 
 
-@logging.info("Попытка запуска бота с токеном: [%s]", BotConfig.token)
+@logging.info("[BOT] Попытка запуска бота с токеном: [%s]", BotConfig.token)
 async def main() -> None:
     """
     Указывает токен для телеграм-бота, добавляет все роутеры из директории handlers, удаляет все
@@ -32,7 +32,7 @@ if __name__ == '__main__':
         level=logging.INFO,
         filename="log.log",
         filemode="w",
-        format="%(asctime)s %(levelname)s %(message)s",
+        format="[%(asctime)s] [%(levelname)s]: %(message)s",
         encoding='UTF-8'
     )
 
