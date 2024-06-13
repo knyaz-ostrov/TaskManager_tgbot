@@ -2,8 +2,8 @@
 Модуль для совершения административных действий в PostgreSQL.
 """
 from database.psql.psql import PSQL
-from database.psql.constants import CREATE_DATABASE_SQL, DROP_DATABASE_SQL, CREATE_TABLE_SQL,\
-    USER, DATABASE
+from database.psql.constants import USER, DATABASE
+from database.sesh.constants import CREATE_DATABASE_SQL, DROP_DATABASE_SQL, CREATE_TABLE_SQL
 
 
 class PSQLAdmin(PSQL):
