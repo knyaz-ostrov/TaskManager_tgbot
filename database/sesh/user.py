@@ -1,6 +1,8 @@
 """
 Модуль для рядовых действий в БД.
 """
+from aiogram.types import Message
+
 from database.psql.psql import PSQL
 from database.sesh.constants import TASKS_LIST_FORMAT, ADD_TASK_SQL, GET_TASKS_SQL,\
     CLEAR_TASKS_SQL, USERNAME, USER_ID, TASK
@@ -10,10 +12,10 @@ class PSQLUser(PSQL):
     """
     Класс для работы с данными в БД.
     """
-    def __init__(self, username: str, user_id: int) -> None:
+    def __init__(self, message: Message) -> None:
         super().__init__()
 
-        self._username, self._user_id = username, user_id
+        self._username, self._user_id = message.from_user.username, message.from_user.id
 
         self._connect_to_db()
 

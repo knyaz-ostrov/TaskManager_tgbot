@@ -53,7 +53,7 @@ async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
 
     await state.clear()
 
-    tasks = PSQLUser(message.from_user.username, message.from_user.id).get_tasks()
+    tasks = PSQLUser(message).get_tasks()
 
     if len(tasks) == 0:
         mes = MessageText().task_list_empty
@@ -73,7 +73,7 @@ async def clear_tasks_cmd(message: Message, state: FSMContext) -> None:
 
     await state.clear()
 
-    PSQLUser(message.from_user.username, message.from_user.id).clear_tasks()
+    PSQLUser(message).clear_tasks()
 
     await message.answer(MessageText().clear_tasks)
 
@@ -86,7 +86,7 @@ async def task_creation(message: Message, state: FSMContext) -> None:
     logging.debug(LOG_TEMPLATE, LOG_TYPE_HANDLER, task_creation.__name__,
                   message.from_user.username, message.from_user.id, message.text[:LOG_MESSAGE_LEN])
 
-    PSQLUser(message.from_user.username, message.from_user.id).add_task(message.text)
+    PSQLUser(message).add_task(message.text)
 
     await message.answer(MessageText().task_created)
     await state.clear()
