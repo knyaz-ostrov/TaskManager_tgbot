@@ -1,6 +1,5 @@
-/env
+env
 __pycache__
-*/__pycache__/
 test.py
 log.log
-config.json
+*.json
