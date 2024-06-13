@@ -11,33 +11,37 @@ ___
 
     `cd TaskManager_tgbot`
 
-3. Открыть файл конфигурации и внести все необходимые данные
+3. Открыть файлы конфигурации и внести все необходимые данные
 
-    Путь: `data/data/config.json`
+    Путь:
+   
+   `data/bot.json`
+   
+   `data/database.json`
      
     > Рекомендую использовать редактор [Notepad++](https://notepad-plus-plus.org/ "Официальный сайт")
 
-4. Создание виртуального окружения
+5. Создание виртуального окружения
 
     `py -m venv env`
 
-5. Активация виртуального окружения
+6. Активация виртуального окружения
 
     * cmd -> `call env/Scripts/activate`
    
     * PowerShell -> `env/Scripts/activate`
 
-6. Установка зависимостей
+7. Установка зависимостей
 
     `pip install -r requirements.txt`
 
-7. Запуск скрипта для создания базы данных
+8. Запуск скрипта для создания базы данных
 
-    `py RecreateDB.py`
+    `py recreate_db.py`
 
-8. Запуск бота
+9. Запуск бота
 
-    `py Bot.py`
+    `py bot.py`
 ___
 > ## Поддержка
 По любым вопросам, проблемам или предложениям создайте [обсуждение](https://github.com/knyaz-ostrov/TaskManager_tgbot/issues/new/choose) в данном репозитории или напишите мне в [Телеграм](https://t.me/knyaz_ostrov "t.me/knyaz_ostrov") или на почту <knyaz.ostrov@gmail.com>.
