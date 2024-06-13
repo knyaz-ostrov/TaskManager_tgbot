@@ -27,7 +27,7 @@ class PSQLUser(PSQL):
         self.query(ADD_TASK_SQL, {USERNAME: self._username, USER_ID: self._user_id, TASK: task})
 
     # def get_tasks(self) -> list[str]:
-    def get_tasks(self) -> list[tuple[int, str]]:
+    def get_tasks(self) -> str:
         """
         Метод для получения списка задач юзера и перевод его в отформатированную строку.
         
