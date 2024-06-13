@@ -1,9 +1,7 @@
 """
 Модуль для выполнения пересоздания БД PostgreSQL.
 """
-from database.db_shell import PSQL, Database
-from constants import CONFIRMATION_OF_DATABASE_RECREATION
-
+from database import PSQLAdmin
 
 
 def main() -> None:
@@ -13,14 +11,14 @@ def main() -> None:
     
     :return:
     """
-    confirm = input(CONFIRMATION_OF_DATABASE_RECREATION).lower()
+    confirm = input("Вы действительно хотите выполнить пересоздание БД? [Y/N]: ").lower()
     if confirm != 'y':
         return
 
-    psql = PSQL()
-    psql.drop_db()
-    psql.create_db()
-    Database().create_table()
+    admin = PSQLAdmin()
+    admin.drop_database()
+    admin.create_database()
+    admin.create_table()
 
 
 if __name__ == '__main__':
