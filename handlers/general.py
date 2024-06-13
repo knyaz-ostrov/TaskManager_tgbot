@@ -55,19 +55,12 @@ async def get_tasks_cmd(message: Message, state: FSMContext) -> None:
 
     tasks = PSQLUser(message.from_user.username, message.from_user.id).get_tasks()
 
-    def create_list(objects: list[str]) -> str:
-        """
-        Формирует строку в виде нумерованного списка.
-        
-        :param objects: Список с объектами.
-        :return: Сформированная строка.
-        """
-        if len(objects) == 0:
-            return MessageText().task_list_empty
+    if len(tasks) == 0:
+        mes = MessageText().task_list_empty
+    else:
+        mes = tasks
 
-        return '\n'.join(f"{i}. {item}" for i, item in enumerate(objects, 1))
-
-    await message.answer(create_list(tasks))
+    await message.answer(mes)
 
 
 @router.message(Command(CMD_CLEAR_TASKS))
