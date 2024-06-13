@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+
+    <!--Messages-->
+        <message id="start">Привет! Это простой менеджер задач.
+Команды:
+    /add - Создать новую задачу
+    /tsk - Вывести текущий список задач
+    /clr - Очистить свой список задач</message>
+        <message id="add_task">Напиши название новой задачи</message>
+        <message id="task_list_empty">Список задач пуст.</message>
+        <message id="clear_tasks">Список задач очищен.</message>
+        <message id="task_created">Задача создана!</message>
+
+</data>
