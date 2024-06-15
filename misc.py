@@ -7,7 +7,7 @@ import logging
 from aiogram import Bot, Dispatcher
 
 from logger import logger
-from handlers import router
+from handlers import general_router, task_manager_router
 
 
 logger(logging.INFO)
@@ -21,4 +21,4 @@ bot = Bot(token)
 
 
 dp = Dispatcher()
-dp.include_router(router)
+dp.include_routers(general_router, task_manager_router)
