@@ -26,7 +26,7 @@ class PSQLUser(PSQL):
         :param task: Название задачи.
         :return:
         """
-        self.query(ADD_TASK_SQL, {USERNAME: self._username, USER_ID: self._user_id, TASK: task})
+        self._query(ADD_TASK_SQL, {USERNAME: self._username, USER_ID: self._user_id, TASK: task})
 
     # def get_tasks(self) -> list[str]:
     def get_tasks(self) -> str:
@@ -36,7 +36,7 @@ class PSQLUser(PSQL):
         :return: Список с кортежами, нулевой индекс которых содержит порядковый номер задачи, а
                  первый - её название.
         """
-        self.query(GET_TASKS_SQL, {USER_ID: self._user_id})
+        self._query(GET_TASKS_SQL, {USER_ID: self._user_id})
         return '\n'.join(TASKS_LIST_FORMAT.format(item[0], item[1]) for item in self._fetchall())
 
     def clear_tasks(self) -> None:
@@ -45,4 +45,4 @@ class PSQLUser(PSQL):
         
         :return:
         """
-        self.query(CLEAR_TASKS_SQL, {USER_ID: self._user_id})
+        self._query(CLEAR_TASKS_SQL, {USER_ID: self._user_id})

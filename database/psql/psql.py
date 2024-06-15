@@ -19,28 +19,18 @@ class PSQL:
         self.__conn = None
         self.__cursor = None
 
-    def query(self, file_path: str, format_objects: dict[str: str | int] | tuple = None) -> None:
+    def __del__(self) -> None:
+        self.__disconnect()
+
+    def __disconnect(self) -> None:
         """
-        Метод для чтения sql-запроса из файла .sql и его выполнения.
+        Метод закрытия подключения.
         
-        :param file_path: Путь к sql-файлу.
         :return:
         """
-        with open(file_path, encoding='UTF-8') as file:
-            request = file.read()
-
-        if format_objects is not None:
-            self.__cursor.execute(request % format_objects)
-        else:
-            self.__cursor.execute(request)
-
-    def _fetchall(self) -> Optional[List[Tuple]]:
-        """
-        Метод для возвращения всех строк из запроса.
-        
-        :return: Список с кортежами или None, если ничего не найдено.
-        """
-        return self.__cursor.fetchall()
+        if self.__conn is not None:
+            self.__cursor.close()
+            self.__conn.close()
 
     def _connection(self, data: dict[str: str]) -> None:
         """
@@ -65,15 +55,25 @@ class PSQL:
         """
         self._connection(self._configs.db_connect)
 
-    def __disconnect(self) -> None:
+    def _query(self, file_path: str, format_objects: dict[str: str | int] | tuple = None) -> None:
         """
-        Метод закрытия подключения.
+        Метод для чтения sql-запроса из файла .sql и его выполнения.
         
+        :param file_path: Путь к sql-файлу.
         :return:
         """
-        if self.__conn is not None:
-            self.__cursor.close()
-            self.__conn.close()
+        with open(file_path, encoding='UTF-8') as file:
+            request = file.read()
 
-    def __del__(self) -> None:
-        self.__disconnect()
+        if format_objects is not None:
+            self.__cursor.execute(request % format_objects)
+        else:
+            self.__cursor.execute(request)
+
+    def _fetchall(self) -> Optional[List[Tuple]]:
+        """
+        Метод для возвращения всех строк из запроса.
+        
+        :return: Список с кортежами или None, если ничего не найдено.
+        """
+        return self.__cursor.fetchall()

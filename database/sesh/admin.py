@@ -10,6 +10,14 @@ class PSQLAdmin(PSQL):
     """
     Класс для выполнения административных методов.
     """
+    def __connect_to_psql(self) -> None:
+        """
+        Метод для подключения к PSQL.
+        
+        :return:
+        """
+        self._connection(self._configs.psql_connect)
+
     def create_database(self) -> None:
         """
         Метод для создания базы данных.
@@ -18,7 +26,7 @@ class PSQLAdmin(PSQL):
         """
         self.__connect_to_psql()
 
-        self.query(CREATE_DATABASE_SQL, {DATABASE: self._configs.database,
+        self._query(CREATE_DATABASE_SQL, {DATABASE: self._configs.database,
                    USER: self._configs.user})
 
     def drop_database(self) -> None:
@@ -29,7 +37,7 @@ class PSQLAdmin(PSQL):
         """
         self.__connect_to_psql()
 
-        self.query(DROP_DATABASE_SQL, {DATABASE: self._configs.database})
+        self._query(DROP_DATABASE_SQL, {DATABASE: self._configs.database})
 
     def create_table(self) -> None:
         """
@@ -39,12 +47,4 @@ class PSQLAdmin(PSQL):
         """
         self._connect_to_db()
 
-        self.query(CREATE_TABLE_SQL, {USER: self._configs.user})
-
-    def __connect_to_psql(self) -> None:
-        """
-        Метод для подключения к PSQL.
-        
-        :return:
-        """
-        self._connection(self._configs.psql_connect)
+        self._query(CREATE_TABLE_SQL, {USER: self._configs.user})
